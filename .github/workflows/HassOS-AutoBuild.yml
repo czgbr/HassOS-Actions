@@ -36,7 +36,7 @@ jobs:
 
     steps:
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       
     - name: Initialization environment
       run: |
@@ -128,13 +128,13 @@ jobs:
         path: HassOS/release
     
     - name: Delete workflow runs
-      uses: GitRML/delete-workflow-runs@main
+      uses: MajorScruffy/delete-old-workflow-runs@v0.2.0
       with:
         retain_days: 1
         keep_minimum_runs: 1
 
     - name: Remove old Releases
-      uses: dev-drprasad/delete-older-releases@v0.1.0
+      uses: dev-drprasad/delete-older-releases@v0.2.0
       with:
         keep_latest: 3
         delete_tags: true
