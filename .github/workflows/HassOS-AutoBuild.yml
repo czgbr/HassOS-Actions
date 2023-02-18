@@ -105,7 +105,7 @@ jobs:
         sed -i '/BR2_TARGET_ROOTFS_SQUASHFS4_LZ4=y/d' buildroot-external/configs/${{matrix.target}}_defconfig
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/ota.sh
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/name.sh
-        #sed -i 's/SYSTEM_SIZE=256M/SYSTEM_SIZE=512M/g' buildroot-external/scripts/hdd-image.sh
+        #sed -i 's/SYSTEM_SIZE=256M/SYSTEM_SIZE=60M/g' buildroot-external/scripts/hdd-image.sh
         cat buildroot-external/scripts/name.sh
         cat buildroot-external/scripts/hdd-image.sh
         echo "BR2_TARGET_ROOTFS_EXT2=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
