@@ -105,84 +105,20 @@ jobs:
         sed -i '/BR2_TARGET_ROOTFS_SQUASHFS4_LZ4=y/d' buildroot-external/configs/${{matrix.target}}_defconfig
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/ota.sh
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/name.sh
-        sed -i 's/SYSTEM_SIZE=256M/SYSTEM_SIZE=512M/g' buildroot-external/scripts/hdd-image.sh
+        #sed -i 's/SYSTEM_SIZE=256M/SYSTEM_SIZE=512M/g' buildroot-external/scripts/hdd-image.sh
         cat buildroot-external/scripts/name.sh
         cat buildroot-external/scripts/hdd-image.sh
         echo "BR2_TARGET_ROOTFS_EXT2=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
         echo "BR2_TARGET_ROOTFS_EXT2_LZ4=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
         echo "BR2_TARGET_ROOTFS_EXT2_4=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_TARGET_ROOTFS_EXT2_SIZE=512M" >> buildroot-external/configs/${{matrix.target}}_defconfig        
+        echo "BR2_TARGET_ROOTFS_EXT2_SIZE=256M" >> buildroot-external/configs/${{matrix.target}}_defconfig        
         echo "CONFIG_EXT2_FS_XATTR=y" >> buildroot-external/kernel/hassos.config    
         echo "CONFIG_EXT2_FS_SECURITY=y" >> buildroot-external/kernel/hassos.config
         echo "CONFIG_EXT4_FS_SECURITY=y" >> buildroot-external/kernel/hassos.config
         echo "CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
         echo "CONFIG_EXT2_FS_LZ4=y" >> buildroot-external/kernel/hassos.config
         cat buildroot-external/configs/${{matrix.target}}_defconfig 
-        
-        #xserver
-        echo "BR2_PACKAGE_XAPP_TWM=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XAPP_XCALC=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XAPP_XCLOCK=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XAPP_XEYES=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XAPP_XINIT=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XDRIVER_XF86_INPUT_KEYBOARD=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XDRIVER_XF86_INPUT_MOUSE=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XDRIVER_XF86_VIDEO_CIRRUS=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XDRIVER_XF86_VIDEO_FBDEV=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XDRIVER_XF86_VIDEO_VESA=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XORG7=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XSERVER_XORG_SERVER=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XTERM=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_TOOLCHAIN_BUILDROOT_CXX=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XORGPROTO=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_USE_WCHAR=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
 
-        #gui desktop
-        echo "BR2_PACKAGE_MATCHBOX_SM=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_MATCHBOX=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_MATCHBOX_PANEL=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_MATCHBOX_DESKTOP=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_MATCHBOX_COMMON=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_MATCHBOX_LIB=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_ZLIB=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_XLIB_LIBXTST=y" >> buildroot-external/configs/${{matrix.target}}_defconfig        
-        echo "BR2_PACKAGE_XLIB_LIBXFT=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_MATCHBOX_FAKEKEY=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_MATCHBOX_KEYBOARD=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_MATCHBOX_STARTUP_MONITOR=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_STARTUP_NOTIFICATION=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        
-        #qt5
-        echo "BR2_PACKAGE_QT5=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_TSLIB=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_HAS_LIBGL=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_INSTALL_LIBSTDCPP=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_TOOLCHAIN_HAS_THREADS_NPTL=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_HOST_GCC_AT_LEAST_5=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_TOOLCHAIN_GCC_AT_LEAST_5=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        
-        #web
-        echo "BR2_PACKAGE_QT5_JSCORE_AVAILABLE=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_USE_MMU=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_TOOLCHAIN_USES_GLIBC=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_HOST_GCC_AT_LEAST_4_9=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_TOOLCHAIN_GCC_AT_LEAST_4_9=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_TOOLCHAIN_HAS_THREADS=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_HAS_UDEV=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_QT5=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        
-        #ftp
-        echo "BR2_USE_MMU=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_VSFTPD_UTMPX=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_VSFTPD=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        
-        #ssh
-        echo "BR2_PACKAGE_OPENSSL=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_HAS_OPENSSL=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_LIBOPENSSL=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_OPENSSL_FORCE_LIBOPENSSL=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_OPENSSH=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        echo "BR2_PACKAGE_OPENSSH_CLIENT=n" >> buildroot-external/configs/${{matrix.target}}_defconfig
         
         #echo "BR2_PACKAGE_HOST_PARTED=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
         echo "BR2_TARGET_ZONELIST=\"default\"" >> buildroot-external/configs/${{matrix.target}}_defconfig
