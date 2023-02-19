@@ -115,6 +115,7 @@ jobs:
         echo "CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
         echo "CONFIG_FS_EXT2=y" >> buildroot-external/bootloader/uboot.config
         echo "CONFIG_CMD_EXT2=y" >> buildroot-external/bootloader/uboot.config
+        echo "CONFIG_EXT2=y" >> buildroot/board/pc/linux.config 
         cat buildroot-external/configs/${{matrix.target}}_defconfig 
         
         #xserver
