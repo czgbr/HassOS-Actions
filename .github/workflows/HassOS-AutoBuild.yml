@@ -60,12 +60,6 @@ jobs:
     - name: Change Settings.
       run: |
         cd HassOS
-        cd buildroot
-        ls -a
-        cd board
-        ls -a 
-        cd pc
-        ls -a
         #sed -i 's/lists\/\*/lists\/*\ \&\& apt-get clean/g' Dockerfile
         #sed -i 's/lists\/\*/lists\/*\ \&\& apt-get clean/g' buildroot-external/package/hassio/builder/Dockerfile
         sed -i 's/-e\ BUILDER_UID/-e TZ=Asia\/Shanghai\ -e BUILDER_UID/g' buildroot-external/package/hassio/hassio.mk 
@@ -121,7 +115,7 @@ jobs:
         echo "CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
         echo "CONFIG_FS_EXT2=y" >> buildroot-external/bootloader/uboot.config
         echo "CONFIG_CMD_EXT2=y" >> buildroot-external/bootloader/uboot.config
-        echo "CONFIG_EXT2=y" >> buildroot/board/pc/linux.config 
+        #echo "CONFIG_EXT2=y" >> buildroot/board/pc/linux.config 
         cat buildroot-external/configs/${{matrix.target}}_defconfig 
         
         #xserver
