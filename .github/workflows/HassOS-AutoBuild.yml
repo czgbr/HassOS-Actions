@@ -60,7 +60,11 @@ jobs:
     - name: Change Settings.
       run: |
         cd HassOS
-        cd HassOS/buildroot
+        cd buildroot
+        ls -a
+        cd board
+        ls -a 
+        cd pc
         ls -a
         #sed -i 's/lists\/\*/lists\/*\ \&\& apt-get clean/g' Dockerfile
         #sed -i 's/lists\/\*/lists\/*\ \&\& apt-get clean/g' buildroot-external/package/hassio/builder/Dockerfile
