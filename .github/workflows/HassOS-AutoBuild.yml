@@ -108,6 +108,7 @@ jobs:
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/name.sh
         sed -i 's/CONFIG_SQUASHFS/CONFIG_EXT2/g' buildroot/board/pc/linux.config
         sed -i 's/SYSTEM_SIZE=256M/SYSTEM_SIZE=10G/g' buildroot-external/scripts/hdd-image.sh
+        sed -i '/# System 1/,+1d' buildroot-external/scripts/hdd-image.sh
         echo "BR2_TARGET_ROOTFS_EXT2=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
         echo "BR2_TARGET_ROOTFS_EXT2_SIZE=\"10G\"" >> buildroot-external/configs/${{matrix.target}}_defconfig        
         echo "CONFIG_EXT2_FS_XATTR=y" >> buildroot-external/kernel/hassos.config    
@@ -115,6 +116,8 @@ jobs:
         echo "CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
         echo "CONFIG_FS_EXT2=y" >> buildroot-external/bootloader/uboot.config
         echo "CONFIG_CMD_EXT2=y" >> buildroot-external/bootloader/uboot.config 
+        cat buildroot/board/pc/linux.config
+        cat buildroot-external/scripts/hdd-image.sh
         
         #xserver
         echo "BR2_PACKAGE_XAPP_TWM=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
