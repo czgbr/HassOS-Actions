@@ -60,6 +60,7 @@ jobs:
     - name: Change Settings.
       run: |
         cd HassOS
+        git submodule update --init
         #sed -i 's/lists\/\*/lists\/*\ \&\& apt-get clean/g' Dockerfile
         #sed -i 's/lists\/\*/lists\/*\ \&\& apt-get clean/g' buildroot-external/package/hassio/builder/Dockerfile
         sed -i 's/-e\ BUILDER_UID/-e TZ=Asia\/Shanghai\ -e BUILDER_UID/g' buildroot-external/package/hassio/hassio.mk 
@@ -105,18 +106,15 @@ jobs:
         sed -i '/BR2_TARGET_ROOTFS_SQUASHFS4_LZ4=y/d' buildroot-external/configs/${{matrix.target}}_defconfig
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/ota.sh
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/name.sh
+        sed -i 's/CONFIG_SQUASHFS/CONFIG_EXT2/g' buildroot/board/pc/linux.config
         sed -i 's/SYSTEM_SIZE=256M/SYSTEM_SIZE=10G/g' buildroot-external/scripts/hdd-image.sh
         echo "BR2_TARGET_ROOTFS_EXT2=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        #echo "BR2_TARGET_ROOTFS_EXT2_LZ4=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-        #echo "BR2_TARGET_ROOTFS_EXT2_4=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
         echo "BR2_TARGET_ROOTFS_EXT2_SIZE=\"10G\"" >> buildroot-external/configs/${{matrix.target}}_defconfig        
         echo "CONFIG_EXT2_FS_XATTR=y" >> buildroot-external/kernel/hassos.config    
         echo "CONFIG_EXT2_FS_SECURITY=y" >> buildroot-external/kernel/hassos.config
         echo "CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
         echo "CONFIG_FS_EXT2=y" >> buildroot-external/bootloader/uboot.config
-        echo "CONFIG_CMD_EXT2=y" >> buildroot-external/bootloader/uboot.config
-        #echo "CONFIG_EXT2=y" >> buildroot/board/pc/linux.config 
-        cat buildroot-external/configs/${{matrix.target}}_defconfig 
+        echo "CONFIG_CMD_EXT2=y" >> buildroot-external/bootloader/uboot.config 
         
         #xserver
         echo "BR2_PACKAGE_XAPP_TWM=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
