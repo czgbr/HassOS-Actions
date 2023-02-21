@@ -55,43 +55,7 @@ jobs:
     
     - name: Change Settings.
       run: |
-        sudo apt-get update 
-        && apt-get upgrade 
-        && apt-get install -y --no-install-recommends \
-            apt-transport-https \
-            ca-certificates \
-            curl \
-            gpg-agent \
-            gpg \
-            dirmngr \
-            bash \
-            bc \
-            binutils \
-            build-essential \
-            bzip2 \
-            cpio \
-            file \
-            git \
-            graphviz \
-            jq \
-            make \
-            ncurses-dev \
-            openssh-client \
-            patch \
-            perl \
-            python3 \
-            python3-matplotlib \
-            python-is-python3 \
-            qemu-utils \
-            rsync \
-            skopeo \
-            sudo \
-            unzip \
-            vim \
-            wget \
-            zip \
-            software-properties-common \
-        && rm -rf /var/lib/apt/lists/*
+
         cd buildroot
         git clone git@github.com:czgbr/HassOS-Actions.git
         ls
