@@ -47,6 +47,46 @@ jobs:
         sudo rm -rf "/usr/local/share/boost"
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
         sudo rm -rf /usr/share/
+        sudo apt-get install rsync
+        
+        apt-get update 
+        && apt-get upgrade 
+        && apt-get install -y --no-install-recommends \
+            apt-transport-https \
+            ca-certificates \
+            curl \
+            gpg-agent \
+            gpg \
+            dirmngr \
+            bash \
+            bc \
+            binutils \
+            build-essential \
+            bzip2 \
+            cpio \
+            file \
+            git \
+            graphviz \
+            jq \
+            make \
+            ncurses-dev \
+            openssh-client \
+            patch \
+            perl \
+            python3 \
+            python3-matplotlib \
+            python-is-python3 \
+            qemu-utils \
+            rsync \
+            skopeo \
+            sudo \
+            unzip \
+            vim \
+            wget \
+            zip \
+            software-properties-common \
+        && rm -rf /var/lib/apt/lists/*
+
     - name: Clone source code  
       run: |
         df -hT $PWD
@@ -55,7 +95,6 @@ jobs:
     - name: Change Settings.
       run: |
         cd buildroot
-        git clone https://github.com/czgbr/buildroot-action/blob/ea9f5f74ec768951f1fed8677f88ba69ee9aa831/.github/workflows/generic_x86_64.config
         ls
       
     - name: SSH connection to Actions
