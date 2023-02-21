@@ -47,8 +47,14 @@ jobs:
         sudo rm -rf "/usr/local/share/boost"
         sudo rm -rf "$AGENT_TOOLSDIRECTORY"
         sudo rm -rf /usr/share/
-        sudo apt-get install rsync
-        
+
+    - name: Clone source code  
+      run: |
+        df -hT $PWD
+        git clone git://git.buildroot.net/buildroot
+    
+    - name: Change Settings.
+      run: |
         sudo apt-get update 
         && apt-get upgrade 
         && apt-get install -y --no-install-recommends \
@@ -86,14 +92,6 @@ jobs:
             zip \
             software-properties-common \
         && rm -rf /var/lib/apt/lists/*
-
-    - name: Clone source code  
-      run: |
-        df -hT $PWD
-        git clone git://git.buildroot.net/buildroot
-    
-    - name: Change Settings.
-      run: |
         cd buildroot
         git clone git@github.com:czgbr/HassOS-Actions.git
         ls
