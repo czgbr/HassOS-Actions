@@ -1,0 +1,93 @@
+name: Buildroot-AutoBuild
+
+on:
+#  release:
+#    types: [published]
+  #push:
+  #  branches:
+  #    - main
+  #  paths:
+  #    - 'start'
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
+  #schedule:
+  #  - cron: 0 18 * * *
+  #watch:
+  #  types: [started]
+
+env:
+  RUN_VALIDATION: true
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    if: github.event.repository.owner.id == github.event.sender.id
+    
+    name: Build ${{matrix.target}}
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [generic_x86_64]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      
+    - name: Initialization environment
+      run: |
+        sudo rm -rf /etc/apt/sources.list.d/* /usr/share/dotnet /usr/local/lib/android /opt/ghc
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq autoremove --purge
+        sudo -E apt-get -qq clean
+        sudo timedatectl set-timezone "Asia/Shanghai"
+        sudo rm -rf "/usr/local/share/boost"
+        sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+        sudo rm -rf /usr/share/
+    - name: Clone source code  
+      run: |
+        df -hT $PWD
+        git clone git://git.buildroot.net/buildroot
+    
+    - name: Change Settings.
+      run: |
+        cd buildroot
+        git clone https://github.com/czgbr/buildroot-action/blob/ea9f5f74ec768951f1fed8677f88ba69ee9aa831/.github/workflows/generic_x86_64.config
+        ls
+      
+    - name: SSH connection to Actions
+      uses: P3TERX/ssh2actions@v1.0.0
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
+      env:
+        TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        
+    - name: Build
+      shell: 'script -q -e -c "bash {0}"'
+      id: build
+      run: |
+        sleep $((RANDOM % 60))    
+        cd buildroot
+        make
+    - name: Upload Firmware
+      uses: actions/upload-artifact@main
+      with:
+        name: ${{matrix.target}}_Firmware
+        path: HassOS/release
+    
+    - name: Delete workflow runs
+      uses: GitRML/delete-workflow-runs@main
+      with:
+        retain_days: 1
+        keep_minimum_runs: 1
+
+    - name: Remove old Releases
+      uses: dev-drprasad/delete-older-releases@v0.2.0
+      with:
+        keep_latest: 3
+        delete_tags: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
