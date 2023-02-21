@@ -383,7 +383,8 @@ jobs:
             BR2_PACKAGE_UTIL_LINUX=y \n 
             BR2_PACKAGE_UTIL_LINUX_LIBUUID=y \n 
             BR2_PACKAGE_XVISOR_ARCH_SUPPORTS=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
-
+            cat buildroot-external/configs/${{matrix.target}}_defconfig
+            
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
