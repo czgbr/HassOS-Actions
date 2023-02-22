@@ -92,23 +92,18 @@ jobs:
         BR2_ROOTFS_SKELETON_DEFAULT=y
         BR2_TARGET_GENERIC_ROOT_PASSWD=\"zhirui02\"
 
+        BR2_TARGET_INFO=y
+        BR2_PACKAGE_HTOP=y
+        BR2_PACKAGE_WGET=y
         BR2_PACKAGE_VIM=y
         BR2_PACKAGE_NANO_TINY=y
+        BR2_PACKAGE_HOST_ZIP=y
         
         BR2_PACKAGE_NTP=y
         BR2_PACKAGE_NTP_SNTP=y
         BR2_PACKAGE_NTPDATE=y
         BR2_PACKAGE_NTPTIME=y
-        
         BR2_PACKAGE_TZDATA=y
-        
-        BR2_PACKAGE_HTOP=y
-        
-        BR2_PACKAGE_WGET=y
-        
-        BR2_TARGET_INFO=y
-        
-        BR2_PACKAGE_HOST_ZIP=y
         
         BR2_PACKAGE_PYTHON3=y
         BR2_PACKAGE_PYTHON3_PYC_ONLY=y
