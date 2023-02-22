@@ -73,9 +73,9 @@ jobs:
         sed -i 's/rootwait/rw rootwait/g' buildroot-external/board/pc/grub.cfg
         sed -i '/BR2_TARGET_ROOTFS_SQUASHFS=y/d' buildroot-external/configs/${{matrix.target}}_defconfig
         sed -i '/BR2_TARGET_ROOTFS_SQUASHFS4_LZ4=y/d' buildroot-external/configs/${{matrix.target}}_defconfig
-        sed -i s/$/CONFIG_EXT2_FS_XATTR=y
-        CONFIG_EXT2_FS_SECURITY=y
-        CONFIG_EXT2_FS=y/g buildroot-external/kernel/hassos.config
+        sed -i 's/$/CONFIG_EXT2_FS_XATTR=y
+                  CONFIG_EXT2_FS_SECURITY=y
+                  CONFIG_EXT2_FS=y/g' buildroot-external/kernel/hassos.config
         
         cat buildroot-external/kernel/hassos.config
         
