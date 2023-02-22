@@ -63,23 +63,21 @@ jobs:
         sed -i 's/-e\ BUILDER_UID/-e TZ=Asia\/Shanghai\ -e BUILDER_UID/g' buildroot-external/package/hassio/hassio.mk 
         sed -i 's/-e\ BUILDER_UID/-e TZ=Asia\/Shanghai\ -e BUILDER_UID/g' scripts/enter.sh
         sed -i 's/-e\ SUPERVISOR_NAME=hassio_supervisor/-e TZ=Asia\/Shanghai\ -e SUPERVISOR_NAME=hassio_supervisor/g' buildroot-external/rootfs-overlay/usr/sbin/hassos-supervisor
-        sed -i '/vhdx/d' buildroot-external/scripts/hdd-image.sh
-        sed -i '/vdi/d' buildroot-external/scripts/hdd-image.sh
-        sed -i 's/homeassistant/itcommander/g' buildroot-external/configs/${{matrix.target}}_defconfig
-        
+       
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/ota.sh
         sed -i 's/squashfs/ext2/g' buildroot-external/scripts/name.sh
         sed -i '/# System 1/,+1d' buildroot-external/scripts/hdd-image.sh
+        sed -i 's/SYSTEM_SIZE=256M/SYSTEM_SIZE=4096M/g' buildroot-external/scripts/hdd-image.sh
         sed -i 's/SQUASHFS/EXT2/g' buildroot/board/pc/linux.config
         sed -i 's/SQUASHFS/EXT2/g' buildroot-external/bootloader/uboot.config
         sed -i 's/rootwait/rw rootwait/g' buildroot-external/board/pc/grub.cfg
-        sed -i 's/SYSTEM_SIZE=256M/SYSTEM_SIZE=4096M/g' buildroot-external/scripts/hdd-image.sh
         sed -i '/BR2_TARGET_ROOTFS_SQUASHFS=y/d' buildroot-external/configs/${{matrix.target}}_defconfig
         sed -i '/BR2_TARGET_ROOTFS_SQUASHFS4_LZ4=y/d' buildroot-external/configs/${{matrix.target}}_defconfig
-
-        echo "CONFIG_EXT2_FS_XATTR=y
+        sed -i s/$/CONFIG_EXT2_FS_XATTR=y
         CONFIG_EXT2_FS_SECURITY=y
-        CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
+        CONFIG_EXT2_FS=y/g buildroot-external/kernel/hassos.config
+        
+        cat buildroot-external/kernel/hassos.config
         
         echo "BR2_TARGET_GENERIC_ROOT_PASSWD=\"zhirui02\"
         BR2_ROOTFS_SKELETON_DEFAULT=y
