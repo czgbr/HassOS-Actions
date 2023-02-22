@@ -71,7 +71,7 @@ jobs:
         sed -i 's/SQUASHFS/EXT2/g' buildroot/board/pc/linux.config
         sed -i 's/SQUASHFS/EXT2/g' buildroot-external/bootloader/uboot.config
         sed -i 's/rootwait/rw rootwait/g' buildroot-external/board/pc/grub.cfg
-        sed -i 's/BR2_TARGET_ROOTFS_SQUASHFS/BR2_TARGET_ROOTFS_EXT2/g' buildroot-external/configs/${{matrix.target}}_defconfig
+        sed -i 's/BR2_TARGET_ROOTFS_SQUASHFS=y/BR2_TARGET_ROOTFS_EXT2=y/g' buildroot-external/configs/${{matrix.target}}_defconfig
         sed -i 's/BR2_TARGET_ROOTFS_SQUASHFS4_LZ4=y/BR2_TARGET_ROOTFS_EXT2_SIZE=\"4096M\"/g' buildroot-external/configs/${{matrix.target}}_defconfig
         
         echo "CONFIG_EXT2_FS_XATTR=y
