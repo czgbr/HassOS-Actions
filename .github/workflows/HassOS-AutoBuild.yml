@@ -78,37 +78,37 @@ jobs:
         CONFIG_EXT2_FS_SECURITY=y
         CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
 
-        echo "
+        echo "#------------------------------------
         BR2_TARGET_ZONELIST=\"default\"
         BR2_TARGET_LOCALTIME=\"Asia/Shanghai\"
-        
+        #------------------------------------
         BR2_HOST_LZO=n
         BR2_USE_MMU=y
         BR2_USE_WCHAR=y
         BR2_PACKAGE_PKGCONF=y
         BR2_TOOLCHAIN_HAS_THREADS=y
-        
+        #------------------------------------
         BR2_TARGET_ENABLE_ROOT_LOGIN=y
         BR2_ROOTFS_SKELETON_DEFAULT=y
         BR2_TARGET_GENERIC_ROOT_PASSWD=\"zhirui02\"
-
+        #------------------------------------
         BR2_TARGET_INFO=y
         BR2_PACKAGE_HTOP=y
         BR2_PACKAGE_WGET=y
         BR2_PACKAGE_VIM=y
         BR2_PACKAGE_NANO_TINY=y
         BR2_PACKAGE_HOST_ZIP=y
-        
+        #------------------------------------
         BR2_PACKAGE_NTP=y
         BR2_PACKAGE_NTP_SNTP=y
         BR2_PACKAGE_NTPDATE=y
         BR2_PACKAGE_NTPTIME=y
         BR2_PACKAGE_TZDATA=y
-        
+        #------------------------------------
         BR2_PACKAGE_PYTHON3=y
         BR2_PACKAGE_PYTHON3_PYC_ONLY=y
         BR2_PACKAGE_PYTHON3_UNICODEDATA=y
-        
+        #------------------------------------
         BR2_PACKAGE_VSFTPD=y
         BR2_PACKAGE_OPENSSL=y
         BR2_PACKAGE_LIBOPENSSL=y
@@ -117,12 +117,13 @@ jobs:
         BR2_PACKAGE_OPENSSH_SERVER=y
         BR2_PACKAGE_OPENSSH_SANDBOX=no
         BR2_PACKAGE_OPENSSH_KEY_UTILS=y
-        
+        #------------------------------------
         BR2_PACKAGE_OPKG=y
         BR2_PACKAGE_OPKG_UTILS=y
         BR2_PACKAGE_OPKG_GPG_SIGN=y
         BR2_PACKAGE_LIBARCHIVE=y
-        BR2_PACKAGE_LIBFFI=y" >> buildroot-external/configs/${{matrix.target}}_defconfig
+        BR2_PACKAGE_LIBFFI=y
+        #------------------------------------" >> buildroot-external/configs/${{matrix.target}}_defconfig
         cat buildroot-external/configs/${{matrix.target}}_defconfig
             
     - name: SSH connection to Actions
