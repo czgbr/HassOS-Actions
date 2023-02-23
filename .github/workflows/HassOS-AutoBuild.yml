@@ -78,7 +78,7 @@ jobs:
         CONFIG_EXT2_FS_SECURITY=y
         CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
 
-        echo "#------------------------------------
+        echo "#------------------------------
         BR2_TARGET_ZONELIST=\"default\"
         BR2_TARGET_LOCALTIME=\"Asia/Shanghai\"
         #------------------------------------
@@ -189,6 +189,10 @@ jobs:
         BR2_PACKAGE_MATCHBOX_LIB=y  
         BR2_PACKAGE_MATCHBOX_PANEL=y  
         BR2_PACKAGE_MATCHBOX_STARTUP_MONITOR=y  
+        #------------------------------------
+        BR2_PACKAGE_FBV=y
+        BR2_PACKAGE_FBGRAB=y
+        BR2_PACKAGE_FB_TEST_APP=y
         #------------------------------------" >> buildroot-external/configs/${{matrix.target}}_defconfig
         cat buildroot-external/configs/${{matrix.target}}_defconfig
             
