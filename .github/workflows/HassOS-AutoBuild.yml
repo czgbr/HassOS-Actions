@@ -177,7 +177,9 @@ jobs:
         BR2_PACKAGE_XTERM=y  
         BR2_PACKAGE_XVKBD=y  
         BR2_PACKAGE_XKEYBOARD_CONFIG=y  
+        BR2_PACKAGE_XDRIVER_XF86_VIDEO_VESA=y
         BR2_PACKAGE_XDRIVER_XF86_VIDEO_FBDEV=y
+        BR2_PACKAGE_XDRIVER_XF86_INPUT_TSLIB=y
         #------------------------------------
         BR2_PACKAGE_MATCHBOX=y  
         BR2_PACKAGE_MATCHBOX_SM=y  
