@@ -37,6 +37,19 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
       
+    - name: Cache node modules
+      id: cache-hassos
+      uses: actions/cache@v3.2.6
+      env:
+          cache-name: cache-node-modules
+      with:
+          path: ~/HassOS-cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+            
     - name: Initialization environment
       run: |
         #sudo echo "nameserver 1.1.1.1" >> /etc/hosts
