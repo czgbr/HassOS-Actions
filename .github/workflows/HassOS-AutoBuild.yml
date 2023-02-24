@@ -92,6 +92,13 @@ jobs:
         CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
 
         echo "#------------------------------
+        BR2_TOOLCHAIN_EXTERNAL_WCHAR=y
+        BR2_TOOLCHAIN_EXTERNAL_LOCALE=y
+        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS=y
+        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS_DEBUG=y
+        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS_NPTL=y
+        BR2_TOOLCHAIN_EXTERNAL_CXX=y
+        #------------------------------------
         BR2_TARGET_ZONELIST=\"default\"
         BR2_TARGET_LOCALTIME=\"Asia/Shanghai\"
         #------------------------------------
@@ -118,9 +125,9 @@ jobs:
         BR2_PACKAGE_NTPTIME=y
         BR2_PACKAGE_TZDATA=y
         #------------------------------------
-        BR2_PACKAGE_PYTHON3=y
-        BR2_PACKAGE_PYTHON3_PYC_ONLY=y
-        BR2_PACKAGE_PYTHON3_UNICODEDATA=y
+        #BR2_PACKAGE_PYTHON3=y
+        #BR2_PACKAGE_PYTHON3_PYC_ONLY=y
+        #BR2_PACKAGE_PYTHON3_UNICODEDATA=y
         #------------------------------------
         BR2_PACKAGE_QT5_JSCORE_AVAILABLE=y  
         BR2_PACKAGE_QT5=y  
