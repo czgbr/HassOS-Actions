@@ -51,7 +51,7 @@ jobs:
     - name: Clone source code  
       run: |
         df -hT $PWD
-        git clone git://git.buildroot.net/buildroot -b dev BuildRoot
+        git clone git://git.buildroot.net/buildroot -b BuildRoot
     
     - name: Change Settings.
       run: |
