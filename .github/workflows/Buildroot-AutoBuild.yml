@@ -56,7 +56,6 @@ jobs:
     - name: Change Settings.
       run: |
         cd buildroot
-        rm -r .config
         cp /home/runner/work/HassOS-Actions/HassOS-Actions/BuildRoot/.config ./.config
         cat .config
         ls -l
