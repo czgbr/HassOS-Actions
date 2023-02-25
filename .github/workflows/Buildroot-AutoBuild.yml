@@ -56,8 +56,8 @@ jobs:
     - name: Change Settings.
       run: |
         cd buildroot
-        cp /home/runner/work/HassOS-Actions/HassOS-Actions/BuildRoot/my.config my.config
         cp /home/runner/work/HassOS-Actions/HassOS-Actions/BuildRoot/.config .config
+        ls -l
         
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
