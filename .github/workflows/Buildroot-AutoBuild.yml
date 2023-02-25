@@ -568,6 +568,10 @@ jobs:
         BR2_TARGET_UBOOT_CUSTOM_PATCH_DIR=\"\"" >> generic_x86_64.config
         cat generic_x86_64.config
         
+        cp /home/runner/work/HassOS-Actions/HassOS-Actions/.config .config
+        cat .config
+        ls 
+        
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
@@ -581,7 +585,7 @@ jobs:
       run: |
         sleep $((RANDOM % 60))    
         cd buildroot
-        make generic_x86_64.config
+        make
     - name: Upload Firmware
       uses: actions/upload-artifact@main
       with:
