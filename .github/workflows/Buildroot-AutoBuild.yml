@@ -581,7 +581,7 @@ jobs:
       run: |
         sleep $((RANDOM % 60))    
         cd buildroot
-        make generic_x86_64.config
+        make
     - name: Upload Firmware
       uses: actions/upload-artifact@main
       with:
