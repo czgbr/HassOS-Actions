@@ -51,11 +51,11 @@ jobs:
     - name: Clone source code  
       run: |
         df -hT $PWD
-        git clone git://git.buildroot.net/buildroot -b BuildRoot
+        git clone git://git.buildroot.net/buildroot
     
     - name: Change Settings.
       run: |
-        cd BuildRoot
+        cd buildroot
         touch generic_x86_64.config
         echo "BR2_HAVE_DOT_CONFIG=y
         BR2_HOST_GCC_AT_LEAST_4_9=y
@@ -477,13 +477,13 @@ jobs:
       id: build
       run: |
         sleep $((RANDOM % 60))    
-        cd BuildRoot
+        cd buildroot
         make
     - name: Upload Firmware
       uses: actions/upload-artifact@main
       with:
         name: ${{matrix.target}}_Firmware
-        path: HassOS/release
+        path: buildroot/release
     
     - name: Delete workflow runs
       uses: GitRML/delete-workflow-runs@main
