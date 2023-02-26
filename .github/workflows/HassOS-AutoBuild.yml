@@ -129,9 +129,9 @@ jobs:
         BR2_PACKAGE_NTPTIME=y
         BR2_PACKAGE_TZDATA=y
         #------------------------------------
-        BR2_PACKAGE_PYTHON3=y
-        BR2_PACKAGE_PYTHON3_PYC_ONLY=y
-        BR2_PACKAGE_PYTHON3_UNICODEDATA=y
+        #BR2_PACKAGE_PYTHON3=y
+        #BR2_PACKAGE_PYTHON3_PYC_ONLY=y
+        #BR2_PACKAGE_PYTHON3_UNICODEDATA=y
         #------------------------------------
         BR2_PACKAGE_QT5_JSCORE_AVAILABLE=y  
         BR2_PACKAGE_QT5=y  
@@ -164,11 +164,11 @@ jobs:
         BR2_PACKAGE_OPENSSH_SANDBOX=no
         BR2_PACKAGE_OPENSSH_KEY_UTILS=y
         #------------------------------------
-        BR2_PACKAGE_OPKG=y
-        BR2_PACKAGE_OPKG_UTILS=y
-        BR2_PACKAGE_OPKG_GPG_SIGN=y
-        BR2_PACKAGE_LIBARCHIVE=y
-        BR2_PACKAGE_LIBFFI=y
+        #BR2_PACKAGE_OPKG=y
+        #BR2_PACKAGE_OPKG_UTILS=y
+        #BR2_PACKAGE_OPKG_GPG_SIGN=y
+        #BR2_PACKAGE_LIBARCHIVE=y
+        #BR2_PACKAGE_LIBFFI=y
         #------------------------------------
         BR2_PACKAGE_XORG7=y  
         BR2_PACKAGE_XSERVER_XORG_SERVER=y  
