@@ -93,13 +93,6 @@ jobs:
         CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
 
         echo "#------------------------------
-        BR2_TOOLCHAIN_EXTERNAL_WCHAR=y
-        BR2_TOOLCHAIN_EXTERNAL_LOCALE=y
-        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS=y
-        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS_DEBUG=y
-        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS_NPTL=y
-        BR2_TOOLCHAIN_EXTERNAL_CXX=y
-        #------------------------------------
         BR2_TARGET_ZONELIST=\"default\"
         BR2_TARGET_LOCALTIME=\"Asia/Shanghai\"
         #------------------------------------
@@ -108,6 +101,16 @@ jobs:
         BR2_USE_WCHAR=y
         BR2_PACKAGE_PKGCONF=y
         BR2_TOOLCHAIN_HAS_THREADS=y
+        BR2_TOOLCHAIN_HAS_THREADS_DEBUG=y
+        BR2_TOOLCHAIN_HAS_THREADS_NPTL=y     
+        BR2_TOOLCHAIN_EXTERNAL_WCHAR=y
+        BR2_TOOLCHAIN_EXTERNAL_LOCALE=y
+        BR2_TOOLCHAIN_EXTERNAL_HAS_SSP=y
+        BR2_TOOLCHAIN_EXTERNAL_INET_RPC=y
+        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS=y
+        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS_DEBUG=y
+        BR2_TOOLCHAIN_EXTERNAL_HAS_THREADS_NPTL=y
+        BR2_TOOLCHAIN_EXTERNAL_CXX=y
         #------------------------------------
         BR2_TARGET_ENABLE_ROOT_LOGIN=y
         BR2_ROOTFS_SKELETON_DEFAULT=y
