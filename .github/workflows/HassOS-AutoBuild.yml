@@ -91,8 +91,8 @@ jobs:
         echo "CONFIG_EXT2_FS_XATTR=y
         CONFIG_EXT2_FS_SECURITY=y
         CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
-        
-        pwd
+
+        cat ../buildroot-external/configs/${{matrix.target}}_defconfig
         echo ../buildroot-external/configs/${{matrix.target}}_defconfig >> buildroot-external/configs/${{matrix.target}}_defconfig
         cat buildroot-external/configs/${{matrix.target}}_defconfig
             
