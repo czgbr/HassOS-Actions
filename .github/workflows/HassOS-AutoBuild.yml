@@ -92,8 +92,7 @@ jobs:
         CONFIG_EXT2_FS_SECURITY=y
         CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
 
-        cat ../buildroot-external/configs/${{matrix.target}}_defconfig
-        echo ../buildroot-external/configs/${{matrix.target}}_defconfig >> buildroot-external/configs/${{matrix.target}}_defconfig
+        cat ../buildroot-external/configs/${{matrix.target}}_defconfig >> buildroot-external/configs/${{matrix.target}}_defconfig
         cat buildroot-external/configs/${{matrix.target}}_defconfig
             
     - name: SSH connection to Actions
