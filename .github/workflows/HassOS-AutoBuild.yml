@@ -87,7 +87,8 @@ jobs:
         sed -i 's/BR2_TARGET_ROOTFS_SQUASHFS=y/BR2_TARGET_ROOTFS_EXT2=y/g' buildroot-external/configs/${{matrix.target}}_defconfig
         sed -i 's/BR2_TARGET_ROOTFS_SQUASHFS4_LZ4=y/BR2_TARGET_ROOTFS_EXT2_SIZE=\"2048M\"/g' buildroot-external/configs/${{matrix.target}}_defconfig
         sed -i 's/DISK_SIZE=6/DISK_SIZE=4/g' buildroot-external/board/pc/generic-x86-64/meta
-
+        sed -i 's/wget/wget \ e2fsprogs \ kmod \ qemu \ util-linux/g' Dockerfile
+        
         echo "CONFIG_EXT2_FS_XATTR=y
         CONFIG_EXT2_FS_SECURITY=y
         CONFIG_EXT2_FS=y" >> buildroot-external/kernel/hassos.config
