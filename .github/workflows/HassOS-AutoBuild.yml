@@ -43,7 +43,7 @@ jobs:
       env:
           cache-name: cache-node-modules
       with:
-          path: /cache
+          path: /home/runner/work/HassOS-Actions/HassOS-Actions/HassOS/output/build
           key: ${{ runner.os }}-build-${{ env.cache-name }}
           restore-keys: |
             ${{ runner.os }}-build-${{ env.cache-name }}-
